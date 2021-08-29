@@ -1,30 +1,62 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view/>
+<Navigation/>
+<router-view/>
 </template>
 
+<script>
+import Navigation from './components/Navigation'
+
+export default {
+    name: 'app',
+    components: {Navigation}
+}
+</script>
+
+
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+
+html {font-size: 16px}
+
+:root {
+    --colorWhite: rgb(230, 230, 230);
+    --colorGray: rgb(115, 115, 115);
+    --colorBlack: rgb(25, 25, 25);
+
+    --colorPrimary: rgb(0, 192, 102);
+    --colorSecondary: rgb(0, 73, 39);
+
+    --cursorPointer: pointer;
+
+    --fontFamilyText: 'Quicksand', sans-serif;
+
+    --fontSizeRegular: 1rem;
+    --fontSizeTitle: 1.5rem;
+
+    --transition: 0.15s;
+}
+
+* {
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    box-sizing: border-box;
+    color: var(--colorBlack);
+    font-family: var(--fontFamilyText);
+    font-size: var(--fontSizeRegular);
+    margin: 0;
+    outline: none;
+    padding: 0;
+    text-shadow: none;
+    text-decoration: none;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+    height: 100vh;
+    overflow: hidden;
+    widows: 100vw;
 }
 
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+#app, #app * {display: grid}
 </style>
