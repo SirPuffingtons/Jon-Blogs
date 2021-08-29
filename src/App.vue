@@ -16,15 +16,15 @@ export default {
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
 
-html {font-size: 16px}
+html {font-size: 17px}
 
 :root {
     --colorWhite: rgb(230, 230, 230);
-    --colorGray: rgb(115, 115, 115);
+    --colorGray: rgb(48, 48, 48);
     --colorBlack: rgb(25, 25, 25);
 
     --colorPrimary: rgb(0, 192, 102);
-    --colorSecondary: rgb(0, 73, 39);
+    --colorSecondary: rgb(0, 65, 34);
 
     --cursorPointer: pointer;
 
@@ -52,11 +52,11 @@ html {font-size: 16px}
     text-decoration: none;
 }
 
-#app {
+/* #app {
     height: 100vh;
     overflow: hidden;
-    widows: 100vw;
-}
+    width: 100vw;
+} */
 
 #app, #app * {display: grid}
 </style>
