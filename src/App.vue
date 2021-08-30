@@ -1,14 +1,34 @@
 <template>
-<Navigation/>
+<Navigation v-if="navigation" />
 <router-view/>
+<Footer v-if="navigation" />
 </template>
 
 <script>
-import Navigation from './components/Navigation'
+import Navigation from '@/components/Navigation'
+import Footer from '@/components/Footer'
 
 export default {
     name: 'app',
-    components: {Navigation}
+    components: {Navigation, Footer},
+    data() {
+        return {
+            navigation: true
+        }
+    },
+    created() {this.checkRoute()},
+    methods: {
+        checkRoute() {
+            this.$route.name === 'Login'
+            || this.$route.name === 'Register'
+            || this.$route.name === 'ResetPassword'
+                ? this.navigation = false
+                : this.navigation = true
+        }
+    },
+    watch: {
+        $route() {this.checkRoute()}
+    }
 }
 </script>
 
@@ -19,7 +39,7 @@ export default {
 html {font-size: 17px}
 
 :root {
-    --colorWhite: rgb(230, 230, 230);
+    --colorWhite: rgb(255, 255, 255);
     --colorGray: rgb(48, 48, 48);
     --colorBlack: rgb(25, 25, 25);
 
@@ -45,6 +65,7 @@ html {font-size: 17px}
     color: var(--colorBlack);
     font-family: var(--fontFamilyText);
     font-size: var(--fontSizeRegular);
+    font-style: normal;
     margin: 0;
     outline: none;
     padding: 0;
@@ -52,11 +73,37 @@ html {font-size: 17px}
     text-decoration: none;
 }
 
-/* #app {
-    height: 100vh;
-    overflow: hidden;
-    width: 100vw;
-} */
-
 #app, #app * {display: grid}
+
+#app {
+    grid-template-rows: max-content auto max-content;
+    min-height: 100vh;
+}
+
+a {transition: var(--transition) color}
+a:hover {color: var(--colorPrimary) !important}
+
+a:focus{
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.25rem;
+}
+
+aside {
+    background-color: rgb(230, 230, 230);
+    position: relative;
+    padding: 2rem 2rem 3rem 2rem;
+    gap: 2rem;
+}
+
+aside > header {
+    font-weight: 300;
+    font-size: 1.8rem;
+    gap: 2rem;
+}
+
+aside > main {
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
 </style>
