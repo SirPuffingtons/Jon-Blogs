@@ -18,7 +18,7 @@
 import BlogCard from '@/components/BlogCard'
 
 export default {
-    name: 'posts',
+    name: 'Posts',
     components: {BlogCard},
     computed: {
         sampleBlogCard() {return this.$store.state.sampleBlogCard},

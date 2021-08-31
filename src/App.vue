@@ -7,16 +7,20 @@
 <script>
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
+import {auth} from '@/firebase'
 
 export default {
-    name: 'app',
+    name: 'App',
     components: {Navigation, Footer},
     data() {
         return {
             navigation: true
         }
     },
-    created() {this.checkRoute()},
+    created() {
+        this.checkRoute()
+        console.log(auth.currentUser)
+    },
     methods: {
         checkRoute() {
             this.$route.name === 'Login'
@@ -105,5 +109,10 @@ aside > header {
 aside > main {
     gap: 2rem;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.error {
+    color: red;
+    text-align: center;
 }
 </style>

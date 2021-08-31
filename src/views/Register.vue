@@ -33,26 +33,63 @@
             <input type="password" placeholder="Password" v-model="password" spellcheck="false">
         </fieldset>
 
-        <button>Register ></button>
+        <div class="error" v-show="error">{{this.error}}</div>
+
+        <button @click.prevent="register">Register ></button>
     </form>
 </main>
 </template>
 
 <script>
+import {auth, db} from '@/firebase'
+import {createUserWithEmailAndPassword} from 'firebase/auth'
+import {doc, setDoc} from 'firebase/firestore'
+
 export default {
-    name: 'register',
+    name: 'Register',
     data() {
         return {
-            firstName: null,
-            lastName: null,
-            username: null,
-            email: null,
-            password: null
+            firstName: '',
+            lastName: '',
+            username: '',
+            email: '',
+            password: '',
+            error: ''
+        }
+    },
+    methods: {
+        async register() {
+            if(this.firstName && this.lastName && this.username && this.email && this.password) {
+
+            this.error = ''
+            let firebaseError = ''
+
+            const dbUser = {
+                firstName: this.firstName,
+                lastName: this.lastName,
+                username: this.username,
+                email: this.email
+            }
+
+            const router = this.$router
+
+            await createUserWithEmailAndPassword(auth, this.email, this.password)
+
+            .then(result => {
+                setDoc(doc(db, 'users', result.user.uid), dbUser)
+                .then(() => router.push({name: 'Home'}))
+                .catch(err => firebaseError = err.code)
+            })
+            
+            .catch(err => firebaseError = 'Email already in use.')
+
+            this.error = firebaseError
+
+            return
+            }
+
+            this.error = 'Please fill out all fields.'
         }
     }
 }
 </script>
-
-<style>
-
-</style>

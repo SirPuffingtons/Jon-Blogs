@@ -7,7 +7,7 @@
         <p v-if="post.isWelcomeScreen">{{post.blogPost}}</p>
         <p v-else class="blogPreview">{{post.blogHTML}}</p>
 
-        <router-link v-if="post.isWelcomeScreen" to="#">Login/Register ></router-link>
+        <router-link v-if="post.isWelcomeScreen" :to="{name: 'Register'}">Login/Register ></router-link>
         <router-link v-else to="#">View Post ></router-link>
     </main>
 
@@ -18,7 +18,7 @@
 
 <script>
 export default {
-    name: 'blogPost',
+    name: 'BlogPost',
     props: ['post']
 }
 </script>

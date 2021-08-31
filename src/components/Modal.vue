@@ -9,7 +9,7 @@
 
 <script>
 export default {
-    name: 'modal',
+    name: 'Modal',
     props: ['message'],
     methods: {
         closeModal() {this.$emit('closeModal')}

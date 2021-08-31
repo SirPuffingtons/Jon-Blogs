@@ -24,7 +24,7 @@
 
 <script>
 export default {
-    name: 'navigation',
+    name: 'Navigation',
     components: {},
     data() {
         return {

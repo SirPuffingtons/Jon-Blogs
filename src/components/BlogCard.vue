@@ -19,7 +19,7 @@
 
 <script>
 export default {
-    name: 'blogCard',
+    name: 'BlogCard',
     props: ['post'],
     computed: {
         editPosts() {return this.$store.state.editPosts}

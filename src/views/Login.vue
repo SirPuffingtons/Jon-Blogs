@@ -20,18 +20,36 @@
 
         <router-link :to="{name: 'ResetPassword'}">Reset Password ></router-link>
 
-        <button>Log In ></button>
+        <div class="error" v-show="error">{{this.error}}</div>
+
+        <button @click.prevent="login">Log In ></button>
     </form>
 </main>
 </template>
 
 <script>
+import {auth} from '@/firebase'
+import {signInWithEmailAndPassword} from 'firebase/auth'
+
 export default {
-    name: 'login',
+    name: 'Login',
     data() {
         return {
             email: null,
-            password: null
+            password: null,
+            error: ''
+        }
+    },
+    methods: {
+        login() {
+            signInWithEmailAndPassword(auth, this.email, this.password)
+
+            .then(() => {
+                this.$router.push({name: 'Home'})
+                this.error = ''
+            })
+
+            .catch(err => this.error = 'Invalid credentials.')
         }
     }
 }
