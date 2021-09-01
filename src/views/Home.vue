@@ -11,7 +11,7 @@
             </main>
         </aside>
 
-        <article>
+        <article v-if="!user">
             <h2>Never miss a post. Create your free account today!</h2>
             <router-link :to="{name: 'Register'}">Register Now ></router-link>
         </article>
