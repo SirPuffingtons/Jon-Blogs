@@ -19,7 +19,7 @@ export default {
 
 <style scoped>
 article {
-    position: absolute;
+    position: fixed;
     place-items: center;
     background-color: rgba(0, 0, 0, 0.75);
     width: 100%;

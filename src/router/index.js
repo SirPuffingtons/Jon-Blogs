@@ -4,6 +4,8 @@ import Posts from '@/views/Posts.vue'
 import Login from '@/views/Login.vue'
 import Register from '@/views/Register.vue'
 import ResetPassword from '@/views/ResetPassword.vue'
+import Profile from '@/views/Profile.vue'
+import Admin from '@/views/Admin.vue'
 // import {auth} from '@/firebase'
 
 const router = createRouter({
@@ -51,6 +53,25 @@ const router = createRouter({
             title: 'Reset Password',
             requiresGuest: true
         }
+        },
+        {
+            path: '/profile',
+            name: 'Profile',
+            component: Profile,
+            meta: {
+                title: 'Profile',
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/admin',
+            name: 'Admin',
+            component: Admin,
+            meta: {
+                title: 'Admin',
+                requiresAuth: true,
+                requiresAdmin: true
+            }
         }
     ]
 })
@@ -58,12 +79,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
     document.title = `${to.meta.title} | Jon Blogs`
 
-    // if(to.matched.some(record => record.meta.requiresAuth)) {
-    //     if(!auth.currentUser) {''}
-    //     else next()
-    // }
-
-    // else if(to.matched.some(record => record.meta.requiresGuest)) {
+    // if(to.matched.some(record => record.meta.requiresGuest)) {
     //     if(auth.currentUser) {
     //         next({
     //             path: '/',
@@ -72,7 +88,6 @@ router.beforeEach((to, from, next) => {
     //             }
     //         })
     //     }
-    //     else next()
     // }
 
     // else next()

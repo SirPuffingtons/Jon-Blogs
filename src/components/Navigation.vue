@@ -22,11 +22,11 @@
 
                 <hr>
 
-                <router-link to="#">
+                <router-link :to="{name: 'Profile'}">
                     <img src="@/assets/icons/user-alt-dark.svg">
                     Profile
                 </router-link>
-                <router-link to="#">
+                <router-link v-if="admin"  :to="{name: 'Admin'}">
                     <img src="@/assets/icons/user-crown-dark.svg">
                     Admin
                 </router-link>
@@ -137,6 +137,17 @@ header > nav > a {font-weight: 500}
     padding: 1rem;
     gap: 1rem;
     cursor: default;
+}
+
+.profileMenu::after {
+    content: '';
+    position: absolute;
+    background-color: var(--colorGray);
+    width: 1.5rem;
+    transform: rotate(45deg);
+    height: 1.5rem;
+    top: -0.5rem;
+    right: 0.5rem;
 }
 
 .profileMenu * {color: white}

@@ -1,6 +1,6 @@
 import { createStore } from 'vuex'
 import {auth, db} from '@/firebase'
-import {doc, getDoc} from 'firebase/firestore'
+import {doc, getDoc, updateDoc} from 'firebase/firestore'
 
 export default createStore({
     state: {
@@ -47,14 +47,26 @@ export default createStore({
             state.initials = payload.data().firstName[0] + payload.data().lastName[0]
         },
 
-        updateUser(state, payload) {
-            state.user = payload
-        }
+        setProfileInitials(state, payload) {state.initials = payload.firstName[0] + payload.lastName[0]},
+
+        updateUser(state, payload) {state.user = payload},
+
+        changeFirstName(state, payload) {state.firstName = payload},
+        changeLastName(state, payload) {state.lastName = payload},
+        changeUsername(state, payload) {state.username = payload}
     },
     actions: {
         getCurrentUser({commit}) {
-        getDoc(doc(db, 'users', auth.currentUser.uid))
-        .then(res => commit('setProfile', res))
+            getDoc(doc(db, 'users', auth.currentUser.uid))
+            .then(res => commit('setProfile', res))
+        },
+        updateUserSettings({commit, state}) {
+            updateDoc(doc(db, 'users', auth.currentUser.uid), {
+                firstName: state.firstName,
+                lastName: state.lastName,
+                username: state.username,
+            })
+            .then(() => commit('setProfileInitials', {firstName: state.firstName, lastName: state.lastName}))
         }
     },
     modules: {
