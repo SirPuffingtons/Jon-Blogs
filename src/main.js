@@ -8,11 +8,9 @@ import {onAuthStateChanged} from 'firebase/auth'
 
 let app
 
-onAuthStateChanged(auth, user => {
-    if(!app)
-        createApp(App)
-        .use(VueEditor)
-        .use(store)
-        .use(router)
-        .mount('#app')
-})
+if(!app)
+    createApp(App)
+    .use(VueEditor)
+    .use(store)
+    .use(router)
+    .mount('#app')

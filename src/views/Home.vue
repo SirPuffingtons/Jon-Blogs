@@ -1,6 +1,6 @@
 <template>
     <main class="home">
-        <BlogPost :post="welcomeScreen" />
+        <BlogPost :post="welcomeScreen" v-if="!user" />
         <BlogPost :post="post" v-for="(post, i) in sampleBlogPost" :key="i" />
 
         <aside>
@@ -48,9 +48,8 @@ export default {
         }
     },
     computed: {
-        sampleBlogCard() {
-            return this.$store.state.sampleBlogCard
-        }
+        sampleBlogCard() {return this.$store.state.sampleBlogCard},
+        user() {return this.$store.state.user}
     }
 }
 </script>

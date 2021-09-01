@@ -8,6 +8,7 @@
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 import {auth} from '@/firebase'
+import {onAuthStateChanged} from 'firebase/auth'
 
 export default {
     name: 'App',
@@ -18,8 +19,15 @@ export default {
         }
     },
     created() {
+        onAuthStateChanged(auth, user => {
+            this.$store.commit('updateUser', user)
+            if(user) {
+                this.$store.dispatch('getCurrentUser')
+                console.log(this.$store.state.email)
+            }
+        })
+
         this.checkRoute()
-        console.log(auth.currentUser)
     },
     methods: {
         checkRoute() {

@@ -46,8 +46,8 @@ export default {
         appearance: none;
         background-color: gray;
         border-radius: 15px;
-        width: 3rem;
-        height: 1.5rem;
+        width: 2.5rem;
+        height: 1.25rem;
         position: relative;
         pointer-events: none;
     }
@@ -56,8 +56,8 @@ export default {
         border-radius: 15px;
         content: '';
         position: absolute;
-        height: 1.5rem;
-        width: 1.5rem;
+        height: 1.25rem;
+        width: 1.25rem;
         background-color: black;
         transform: scale(1.1);
         transition: 0.5s all;

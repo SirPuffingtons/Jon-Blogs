@@ -6,7 +6,7 @@
         <router-link :to="{name: 'Home'}">Home</router-link>
         <router-link :to="{name: 'Posts'}">Posts</router-link>
         <router-link to="#">Create Post</router-link>
-        <router-link :to="{name: 'Login'}">Login/Register</router-link>
+        <router-link :to="{name: 'Login'}" v-if="!user">Login/Register</router-link>
     </nav>
 
     <address>
@@ -26,7 +26,12 @@
 </template>
 
 <script>
-export default {name: 'Footer'}
+export default {
+    name: 'Footer',
+    computed: {
+        user() {return this.$store.state.user}
+    }
+}
 </script>
 
 <style scoped>

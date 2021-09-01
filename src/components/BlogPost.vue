@@ -1,5 +1,5 @@
 <template>
-<section>
+<section :class="{'user': !user}">
     <main>
         <h2 v-if="post.isWelcomeScreen">{{post.title}}</h2>
         <h2 v-else>{{post.title}}</h2>
@@ -19,7 +19,10 @@
 <script>
 export default {
     name: 'BlogPost',
-    props: ['post']
+    props: ['post'],
+    computed: {
+        user() {return this.$store.state.user}
+    }
 }
 </script>
 
@@ -33,8 +36,8 @@ export default {
 
     section {grid-template-columns: 0.66fr 1fr}
 
-    section:first-of-type > main {background-color: var(--colorGray)}
-    section:first-of-type > main * {color: var(--colorWhite)}
+    section.user:first-of-type > main {background-color: var(--colorGray)}
+    section.user:first-of-type > main * {color: var(--colorWhite)}
 
     section:nth-of-type(even) {grid-template-columns: 1fr 0.66fr}
 
@@ -64,6 +67,8 @@ export default {
         max-width: 18rem;
         text-transform: uppercase;
     }
+
+
 
     @media (max-width: 750px) {
         section {grid-template-columns: auto}
