@@ -5,7 +5,7 @@
     <nav v-show="!isMobile">
         <router-link :to="{name: 'Home'}">Home</router-link>
         <router-link :to="{name: 'Posts'}">Posts</router-link>
-        <router-link to="#">Create Post</router-link>
+        <router-link to="#" v-if="admin">Create Post</router-link>
 
         <div class="profileBtn" ref="profileBtn" v-if="user" @click="toggleProfileMenu">
             {{this.$store.state.initials}}
@@ -46,7 +46,7 @@
         <nav>
             <router-link :to="{name: 'Home'}">Home</router-link>
             <router-link :to="{name: 'Posts'}">Posts</router-link>
-            <router-link to="#">Create Post</router-link>
+            <router-link to="#" v-if="admin">Create Post</router-link>
             <router-link :to="{name: 'Login'}" v-if="!user">Login/Register</router-link>
         </nav>
     </transition>
