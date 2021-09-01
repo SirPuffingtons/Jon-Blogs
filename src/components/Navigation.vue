@@ -30,7 +30,7 @@
                     <img src="@/assets/icons/user-crown-dark.svg">
                     Admin
                 </router-link>
-                <router-link to="#" @click="logout">
+                <router-link :to="{name: 'Home'}" @click="logout">
                     <img src="@/assets/icons/sign-out-alt-regular-dark.svg">
                     Log Out
                 </router-link>
